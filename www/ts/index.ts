@@ -39,6 +39,8 @@ function drawFrame(canvas: HTMLCanvasElement, data: wasm.Data, ts: number) {
     const count = data.count();
     const xs = new Float32Array(memory.buffer, data.xs(), count);
     const ys = new Float32Array(memory.buffer, data.ys(), count);
+    const endXs = new Float32Array(memory.buffer, data.end_x(), count);
+    const endYs = new Float32Array(memory.buffer, data.end_y(), count);
 
     canvas.width = canvas.width;  // clear
     const ctx = canvas.getContext("2d")!;
@@ -47,11 +49,9 @@ function drawFrame(canvas: HTMLCanvasElement, data: wasm.Data, ts: number) {
     ctx.translate(canvas.width/2, canvas.height/2);
     const ixDelta = Math.floor(ts * 0.005);
     for (let ix = 0; ix < count; ix++) {
-        //ctx.fillRect(xs[ix], ys[ix], 5, 5);
         ctx.beginPath();
         ctx.moveTo(xs[ix], ys[ix]);
-        const next = (ix + ixDelta) % count;
-        ctx.lineTo(xs[next], ys[next]);
+        ctx.lineTo(endXs[ix], endYs[ix]);
         ctx.stroke();
     }
 
