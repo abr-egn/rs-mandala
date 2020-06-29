@@ -21,7 +21,7 @@ pub struct Data {
 
 const POINTS: usize = 200;
 const RADIUS: f32 = 400.0;
-const POINT_SPEED: f32 = 0.0001;
+const POINT_SPEED: f32 = 0.00015;
 const END_SPEED: f32 = -0.0002;
 
 #[wasm_bindgen]

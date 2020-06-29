@@ -44,7 +44,6 @@ function drawFrame(canvas: HTMLCanvasElement, data: wasm.Data, ts: number) {
 
     canvas.width = canvas.width;  // clear
     const ctx = canvas.getContext("2d")!;
-    ctx.fillStyle = "#FFFFFF";
     ctx.strokeStyle = "#FFFFFF";
     ctx.translate(canvas.width/2, canvas.height/2);
     const ixDelta = Math.floor(ts * 0.005);
@@ -52,6 +51,7 @@ function drawFrame(canvas: HTMLCanvasElement, data: wasm.Data, ts: number) {
         ctx.beginPath();
         ctx.moveTo(xs[ix], ys[ix]);
         ctx.lineTo(endXs[ix], endYs[ix]);
+        ctx.strokeStyle = `rgb(${ix}, ${ix}, ${ix})`
         ctx.stroke();
     }
 
