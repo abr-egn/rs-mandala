@@ -43,9 +43,16 @@ function drawFrame(canvas: HTMLCanvasElement, data: wasm.Data, ts: number) {
     canvas.width = canvas.width;  // clear
     const ctx = canvas.getContext("2d")!;
     ctx.fillStyle = "#FFFFFF";
+    ctx.strokeStyle = "#FFFFFF";
     ctx.translate(canvas.width/2, canvas.height/2);
+    const ixDelta = Math.floor(ts * 0.005);
     for (let ix = 0; ix < count; ix++) {
-        ctx.fillRect(xs[ix], ys[ix], 5, 5);
+        //ctx.fillRect(xs[ix], ys[ix], 5, 5);
+        ctx.beginPath();
+        ctx.moveTo(xs[ix], ys[ix]);
+        const next = (ix + ixDelta) % count;
+        ctx.lineTo(xs[next], ys[next]);
+        ctx.stroke();
     }
 
     window.requestAnimationFrame((ts) => drawFrame(canvas, data, ts));

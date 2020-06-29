@@ -1,6 +1,7 @@
 import * as React from "react";
 
 export function Index(props: {}): JSX.Element {
+    /*
     return (<>
         <div className="topleft">Top Left</div>
         <div className="topright">Top Right</div>
@@ -8,4 +9,6 @@ export function Index(props: {}): JSX.Element {
         <div className="bottom">Bottom</div>
         <div className="bottomright">Bottom Right</div>
     </>);
+    */
+   return <></>;
 }
